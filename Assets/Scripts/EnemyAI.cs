@@ -10,8 +10,11 @@ public class EnemyAI : MonoBehaviour {
 
 	private Vector3 defaultPosition;
 
+	public PointController pointController;
+
 	void Start () {
 		defaultPosition = transform.position;
+		pointController = FindObjectOfType<PointController>();
 	}
 	
 	void Update () {
@@ -21,6 +24,7 @@ public class EnemyAI : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D coll) {
 		if (coll.gameObject.tag == "Hole") {
 			speed += 0.001f;
+			pointController.AddPoint ();
 			transform.position = defaultPosition;
 		}
 	}

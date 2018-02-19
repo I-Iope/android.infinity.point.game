@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour {
 
 	private Vector3 defaultPosition;
 
-	public PointController pointController;
+	private PointController pointController;
 
 	void Start () {
 		defaultPosition = transform.position;

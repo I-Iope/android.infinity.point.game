@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMoviment : MonoBehaviour {
 
@@ -21,9 +22,10 @@ public class PlayerMoviment : MonoBehaviour {
 	}
 	
 	void Update () {
-		horizontal = Input.GetAxis ("Horizontal");
+		horizontal = CrossPlatformInputManager.GetAxis ("Horizontal");
 		IsOnFloor ();
 		InputControl ();
+		ChangeDirection (horizontal);
 		Moviment (horizontal);
 	}
 
@@ -48,6 +50,14 @@ public class PlayerMoviment : MonoBehaviour {
 		rb2D.velocity = new Vector2 ((horiz * speed), rb2D.velocity.y);
 	}
 
+	private void ChangeDirection (float horiz) {
+		if (horiz < 0) {
+			transform.rotation = new Quaternion (0, 180f, 0, 0);
+			return;
+		}
+		transform.rotation = new Quaternion (0, 0, 0, 0);
+	}
+
 	public void Jump () {
 		if (onFloor && rb2D.velocity.y <= 0) {
 			rb2D.AddForce (new Vector2 (0, jumpForce));
@@ -55,7 +65,7 @@ public class PlayerMoviment : MonoBehaviour {
 	}
 
 	private void InputControl () {
-		if (Input.GetButtonDown ("Jump")) {
+		if (CrossPlatformInputManager.GetAxis ("Jump") == 1) {
 			Jump ();
 		}
 	}

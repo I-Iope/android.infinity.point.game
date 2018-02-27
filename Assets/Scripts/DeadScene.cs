@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class DeadScene : MonoBehaviour {
 
@@ -20,7 +21,7 @@ public class DeadScene : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetButtonDown("Space")) {
+		if (CrossPlatformInputManager.GetButtonDown("Jump")) {
 			SceneManager.LoadScene (1, LoadSceneMode.Single);
 		}
 	}

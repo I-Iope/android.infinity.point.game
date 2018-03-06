@@ -12,4 +12,8 @@ public class MenuSceneScript : MonoBehaviour {
 	public void OnClickExit() {
 		Application.Quit ();
 	}
+
+	public void OnClickTutorial() {
+		SceneManager.LoadScene ("Tutorial", LoadSceneMode.Single);
+	}
 }

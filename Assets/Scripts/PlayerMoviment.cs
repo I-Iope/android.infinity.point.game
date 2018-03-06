@@ -59,8 +59,10 @@ public class PlayerMoviment : MonoBehaviour {
 	}
 
 	public void Jump () {
-		if (onFloor && rb2D.velocity.y == 0) 
+		if (onFloor && rb2D.velocity.y == 0) {
 			rb2D.AddForce (new Vector2 (0, jumpForce), ForceMode2D.Force);
+			GetComponent<AudioSource> ().Play ();
+		}
 	}
 
 	private void InputControl () {
